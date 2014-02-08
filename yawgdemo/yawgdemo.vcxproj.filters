@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="pub">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="ypw">
+      <UniqueIdentifier>{fd83e8f4-8e24-42a0-b8d9-49665ffad60e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="hello.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="pywrap\ypw_yawgdemo.cpp">
+      <Filter>ypw</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pub\hello.h">
+      <Filter>pub</Filter>
+    </ClInclude>
+    <ClInclude Include="pywrap\ypw_hello.h">
+      <Filter>ypw</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
