@@ -12,10 +12,16 @@
     <Filter Include="res">
       <UniqueIdentifier>{ef680b5c-387d-4fdc-bb57-e5071e94af87}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\boostpy">
+      <UniqueIdentifier>{3c96e869-a940-4b9c-9abe-c61018ec94c3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="boostpy\xlator.cpp">
+      <Filter>src\boostpy</Filter>
     </ClCompile>
     <ClCompile Include="yawg_pyxlator.cpp">
       <Filter>src</Filter>
@@ -36,6 +42,9 @@
     </ClInclude>
     <ClInclude Include="res\yawg_python.h">
       <Filter>res</Filter>
+    </ClInclude>
+    <ClInclude Include="boostpy\xlator.h">
+      <Filter>src\boostpy</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

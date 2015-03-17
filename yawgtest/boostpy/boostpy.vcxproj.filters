@@ -5,8 +5,16 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="ypw">
-      <UniqueIdentifier>{fd83e8f4-8e24-42a0-b8d9-49665ffad60e}</UniqueIdentifier>
+    <Filter Include="src\generated">
+      <UniqueIdentifier>{b4d8b843-14b1-4417-8672-ca9ebff741b7}</UniqueIdentifier>
     </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="yawg_hello.cpp">
+      <Filter>src\generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\hello.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

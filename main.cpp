@@ -22,6 +22,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 #include "yawg_pyxlator.h"
+#include "boostpy/xlator.h"
 
 #include "cppprog.h"
 #include "cppwriter.h"
@@ -57,6 +58,7 @@ int main(int argc, char** argv)
 		("help,h",					"produce help message")
 		("input-folder,i",			bpo::value<std::string>(), "Input folder from where header files are picked.")
 		("output-folder,o",			bpo::value<std::string>(), "Output folder for emitting wrapper files.")
+        ("binding,b",               bpo::value<std::string>(), "Binding target. It can be CPython or BPython (for Boost.Python).")
 		("module,m",				bpo::value<std::string>(), "Module name.")
 		;
 
@@ -89,9 +91,9 @@ int main(int argc, char** argv)
 	bfs::path outputPath;
 
 	if(vm.count("input-folder"))
-		inputPath = vm["input-folder"].as<std::string>();
+		inputPath = bfs::absolute(vm["input-folder"].as<std::string>());
 	if(vm.count("output-folder"))
-		outputPath = vm["output-folder"].as<std::string>();
+		outputPath = bfs::absolute(vm["output-folder"].as<std::string>());
 
 	if	(!bfs::is_directory(inputPath) ||
 		(bfs::exists(outputPath) && !bfs::is_directory(outputPath))
@@ -102,14 +104,23 @@ int main(int argc, char** argv)
 
 	bfs::create_directories(outputPath);
 
-	YPyXlator pyXlator(inputPath, outputPath, vm["module"].as<std::string>());
-	const CppProgram& pyWrapProg = pyXlator.getBindingProg();
-	const CppCompoundArray& fileDOMs = pyWrapProg.getFileDOMs();
-	CppWriter cppWriter;
-	for(CppCompoundArray::const_iterator itr = fileDOMs.begin(); itr != fileDOMs.end(); ++itr)
-	{
-		const CppCompound* pyCompound = *itr;
-		std::ofstream stm(pyCompound->name_);
-		cppWriter.emit(pyCompound, stm);
-	}
+    std::string binding = vm.count("binding") == 0 ? "BPython" : vm["binding"].as<std::string>();
+
+    if(binding == "CPython")
+    {
+       YPyXlator pyXlator(inputPath, outputPath, vm["module"].as<std::string>());
+	   const CppProgram& pyWrapProg = pyXlator.getBindingProg();
+	   const CppCompoundArray& fileDOMs = pyWrapProg.getFileDOMs();
+	   CppWriter cppWriter;
+	   for(CppCompoundArray::const_iterator itr = fileDOMs.begin(); itr != fileDOMs.end(); ++itr)
+	   {
+		   const CppCompound* pyCompound = *itr;
+		   std::ofstream stm(pyCompound->name_);
+		   cppWriter.emit(pyCompound, stm);
+	   }
+    }
+    else if(binding == "BPython")
+    {
+       BoostPythonXlator boostpyXlator(inputPath, outputPath, vm["module"].as<std::string>());
+    }
 }

@@ -50,7 +50,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../common/third_party/boost_tp;../cppparser/pub</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;../common/third_party/boost_tp;../cppparser/pub</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>BOOST_AUTO_LINK_NOMANGLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -65,7 +65,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../common/third_party/boost_tp;../cppparser/pub</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;../common/third_party/boost_tp;../cppparser/pub</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>BOOST_AUTO_LINK_NOMANGLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -77,10 +77,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="boostpy\xlator.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="yawg_pyxlator.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="boostpy\xlator.h" />
     <ClInclude Include="res\yawg_python.h" />
     <ClInclude Include="utils.h" />
     <ClInclude Include="yawg_pyxlator.h" />
